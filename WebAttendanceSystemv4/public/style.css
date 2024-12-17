@@ -8,7 +8,7 @@
 /* Base styles for the page */
 body {
     font-family: Arial, sans-serif;
-    background-image: url(images/backg.jpg); /* Background image */
+    background-image: url(Images/backg.jpg); /* Background image */
     background-repeat: no-repeat;
     background-size: cover;
     color: white;
