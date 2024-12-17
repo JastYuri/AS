@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Saved Schedule</title>
+    <link rel="stylesheet" href="/boardstyle.css"> <!-- Link to external CSS for styling -->
+</head>
+<body>
+    <!-- Navbar Section -->
+    <header>
+        <nav>
+            <img src="images/ccclogo.png" alt="Logo" class="logo"> <!-- Logo for the system -->
+            <span class="welcome-text">Saved Schedule for {{day}}</span> <!-- Display dynamic day of the schedule -->
+        </nav>
+    </header>
+    
+    <!-- Main Content Section -->
+    <main class="main-content">
+        <!-- Schedule Details Section -->
+        <section class="schedule-details">
+            <h2>Schedule Details</h2> <!-- Heading for the schedule details -->
+            <p><strong>Subject:</strong> {{subject_name}}</p> <!-- Dynamic subject name -->
+            <p><strong>Section:</strong> {{section_name}}</p> <!-- Dynamic section name -->
+            <p><strong>Time:</strong> {{session_start}} - {{session_end}}</p> <!-- Dynamic session start and end times -->
+        </section>
+        
+        <!-- Student List Section -->
+        <section class="student-list">
+            <h2>Student List</h2> <!-- Heading for the student list -->
+            <ul>
+                <!-- Handlebars loop to display each student's name and unique code -->
+                {{#each students}}
+                    <li>{{student_name}} ({{unique_code}})</li> <!-- Each student listed with their unique code -->
+                {{/each}}
+            </ul>
+        </section>
+
+        <!-- Download Form Section -->
+        <form id="downloadForm" action="/download-schedule" method="get" target="_blank">
+            <!-- Hidden input fields for passing schedule details to the download action -->
+            <input type="hidden" name="scheduleId" value="{{schedule_id}}">
+            <input type="hidden" name="sessionId" value="{{session_id}}">
+            <input type="hidden" name="day" value="{{day}}">
+            <button type="submit" class="download-button">Download as CSV</button> <!-- Button to trigger CSV download -->
+        </form>
+    </main>
+
+    <!-- JavaScript for the download form submission -->
+    <script>
+        // Event listener for the form submission
+        document.getElementById('downloadForm').onsubmit = function() {
+            // Short delay before redirecting to ensure download starts
+            setTimeout(function() {
+                window.location.href = '/dashboard'; // Redirect to the dashboard after download starts
+            }, 1000); // Adjust delay as needed
+        };
+    </script>
+</body>
+</html>
