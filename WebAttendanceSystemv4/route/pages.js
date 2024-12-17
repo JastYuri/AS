@@ -290,6 +290,7 @@ router.get('/', (req, res) => {
     res.render('login'); // Render the login page
 });
 
+
 // Route for manual login
 router.post('/manual-login', (req, res) => {
     const accessCode = req.body.code;
@@ -352,7 +353,6 @@ router.post('/barcode-login', (req, res) => {
 });
 
 
-
 // Route to render the dashboard
 router.get('/dashboard', (req, res) => {
     const professorCode = req.session.professorCode;
@@ -374,8 +374,6 @@ router.get('/dashboard', (req, res) => {
         }
     });
 });
-
-
 // Route to render the dashboard
 router.get('/scanner', (req, res) => {
     const professorCode = req.session.professorCode;
